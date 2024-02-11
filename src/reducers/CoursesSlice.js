@@ -4,8 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const storedCourses = JSON.parse(localStorage.getItem('courses'))
 const initialState = storedCourses ? storedCourses : {
   courses : [
-    {name: "course1", level:1, description:"course 1description", image:"img-src", lectures: ["lecture1","lecture2"]},
-    {name: "course2", level:2, description:"course 2description", image:"img-src", lectures: ["lecture3","lecture4"]}
+    {name: "course1", level:1, description:"course 1description", image:"img-src", lectures: ["course1-lecture1","course1-lecture2"]},
+    {name: "course2", level:2, description:"course 2description", image:"img-src", lectures: ["course2-lecture1","course2-lecture2"]}
   ]
 }
 
