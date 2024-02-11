@@ -1,9 +1,8 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 const PrivateRoutes = () => {
-  const currentUser = useSelector(state => state.auth.currentUser)
+  const currentUser = JSON.parse(localStorage.getItem('user'))
   return (
     <div>
       {
