@@ -1,13 +1,13 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import Login from '../../pages/LoginPage'
+import { useSelector } from 'react-redux'
 
 const PrivateRoutes = () => {
-  const user = true
+  const currentUser = useSelector(state => state.auth.currentUser)
   return (
     <div>
       {
-        user ? <Outlet /> : <Navigate to={<Login />} />
+        currentUser ? <Outlet /> : <Navigate to="/" />
       }
     </div>
   )

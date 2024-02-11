@@ -10,8 +10,8 @@ import ErrorPage from '../../pages/ErrorPage'
 const RouterComponent = () => {
   return (
     <Routes>
+      <Route path='/' element={<Login />} />
         <Route element={<PrivateRoutes />}>
-          <Route path='/' element={<Login />} />
           <Route path='/admin' element={<AdminPanel />} />
           <Route path='/instructor/:name?' element={<InstructorPanel />} />
           <Route path='*' element={<ErrorPage />} />

@@ -61,6 +61,7 @@ const Login = () => {
       {error && <div className="error">{error}</div>}
       <form onSubmit={handleSubmit}>
       <table>
+        <tbody>
         <tr>
           <td>
           <label>Username:</label>
@@ -87,6 +88,7 @@ const Login = () => {
           />
           </td>
         </tr>
+        </tbody>
       </table>
         <div className='btn-container'>
           <button type="submit">Login</button>
