@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Lecture Scheduling Module Readme
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The Lecture Scheduling Module is designed to facilitate scheduling and management of courses and lectures for administrators and instructors. It is built using React-Redux Toolkit and stores user credentials in the Redux store for authentication purposes.
 
-In the project directory, you can run:
+## User Roles
 
-### `npm start`
+- **Admin**: Admins have the authority to manage courses, add lectures under courses, schedule lectures, and assign them to instructors.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Instructor**: Instructors can view lectures assigned to them along with the dates.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Pages
 
-### `npm test`
+The project consists of three main pages:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. ### Login Page ("/"):
+- Initial page where users can authenticate.
+- Users are redirected to their respective panels based on their roles after successful authentication.
 
-### `npm run build`
+2. ### Admin Panel ("/admin"):
+- Admins can manage courses, add lectures, schedule lectures, and assign them to instructors.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. ### Instructor Panel ("/instructor/(instructor name)"):
+- Instructors can view lectures assigned to them along with the dates.
+- The instructor's name is automatically set as a route parameter.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Redirects
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Users attempting to access panels unrelated to their roles are automatically redirected to their respective panels.
+- For example, if an admin tries to access the instructor panel ("/instructor"), they will be redirected back to the admin panel ("/admin").
 
-### `npm run eject`
+## Route List
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **"/"**: Login page.
+- **"/admin"**: Admin panel.
+- **"/instructor/(instructor name)"**: Instructor panel (automatically sets the current logged-in instructor's name as a route parameter).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Note
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- User credentials are stored in the Redux store instead of being stored in an encrypted format in a database.
+- The project utilizes React-Redux Toolkit for state management and authentication.
+- Instructors cannot access panels of other instructors. Attempting to do so will automatically redirect to the current logged-in instructor's panel.
