@@ -15,7 +15,7 @@ const Footer = () => {
           <a href='https://twitter.com/?lang=en' title='Twitter' target="_blank" rel='noreferrer noopener'><FaTwitter /></a>
           <a href='https://www.instagram.com/' title='Instagram' target="_blank" rel='noreferrer noopener'><FaInstagram /></a>
         </div>
-        <p>&copy;LectureSchedular 2024.&reg;All rights reserved</p>
+        <p className='copyright-text'>&copy;LectureSchedular 2024.&reg;All rights reserved</p>
       </Wrapper>
     </div>
   )
