@@ -1,6 +1,8 @@
+@use "../../scss/variables" as v;
+
 .header {
-  background-color: #333;
-  color: #fff;
+  background-color: v.$charcoal;
+  color: v.$white;
   padding: 20px;
   
   .wrapper {
@@ -14,13 +16,13 @@
   }
 
   a {
-    color: #fff;
+    color: v.$white;
     text-decoration: none;
   }
 
   button {
     background-color: #f44336;
-    color: #fff;
+    color: v.$white;
     border: none;
     padding: 8px 16px;
     border-radius: 4px;

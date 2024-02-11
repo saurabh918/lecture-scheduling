@@ -59,11 +59,11 @@ const CourseForm = () => {
     // Check for validation
     if (!courseData.name) {
       errors.name = 'Course Name is required';
-    }
-
-    const regex = /[A-Za-z]{1}/
-    if(!(courseData.name.match(regex))) {
-      errors.name = 'Course Name must have at least 1 alphabet character';
+    } else {
+      const regex = /[A-Za-z]{1}/
+      if(!(courseData.name.match(regex))) {
+        errors.name = 'Course Name must have at least 1 alphabet character';
+      }
     }
 
     if (courses.find(course => course.name === courseData.name)) {

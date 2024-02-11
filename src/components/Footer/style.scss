@@ -1,8 +1,8 @@
 @use "../../scss/variables" as v;
 
 .footer {
-  background-color: #333;
-  color: #fff;
+  background-color: v.$charcoal;
+  color: v.$white;
   padding: 20px;
   
   .wrapper {
@@ -22,7 +22,7 @@
     justify-content: space-between;
 
     a {
-      color: #fff;
+      color: v.$white;
       font-size: 20px;
       &:hover {
         color: #e6e3e3;

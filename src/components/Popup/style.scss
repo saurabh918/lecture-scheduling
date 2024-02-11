@@ -1,10 +1,12 @@
+@use "../../scss/variables" as v;
+
 .popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  color: v.$white;
   padding: 20px;
   border-radius: 8px;
   z-index: 1000; 
@@ -17,15 +19,15 @@
     }
 
     button {
-      background-color: #fff;
-      color: #333;
+      background-color: v.$white;
+      color: v.$charcoal;
       border: none;
       padding: 8px 16px;
       border-radius: 4px;
       cursor: pointer;
 
       &:hover {
-        background-color: #ddd;
+        background-color: #dddddd;
       }
     }
   }

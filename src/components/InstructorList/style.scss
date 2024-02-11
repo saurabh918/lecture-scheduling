@@ -1,8 +1,10 @@
+@use "../../scss/variables" as v;
+
 .instructor-list-container {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: v.$snow;
   margin: 0 auto;
 
   h3 {

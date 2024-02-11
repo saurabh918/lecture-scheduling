@@ -8,7 +8,7 @@ import Wrapper from '../Wrapper';
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <footer className='footer'>
       <Wrapper>
         <div className='social-icons'>
           <a href='https://www.facebook.com/' title='Facebook' target="_blank" rel='noreferrer noopener'><FaFacebook /></a>
@@ -17,7 +17,7 @@ const Footer = () => {
         </div>
         <p className='copyright-text'>&copy;LectureSchedular 2024.&reg;All rights reserved</p>
       </Wrapper>
-    </div>
+    </footer>
   )
 }
 

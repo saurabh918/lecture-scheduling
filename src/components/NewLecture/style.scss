@@ -1,8 +1,9 @@
+@use "../../scss/variables" as v;
 .new-lecture-container {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: v.$snow;
   width: 400px;
   margin: 0 auto;
 
@@ -18,8 +19,8 @@
 
     button[type='submit'] {
       padding: 10px 15px;
-      background-color: #007bff;
-      color: #fff;
+      background-color: v.$dodger-blue;
+      color: v.$white;
       border: none;
       border-radius: 3px;
       cursor: pointer;
@@ -27,7 +28,7 @@
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #0056b3;
+        background-color: v.$cobalt;
       }
     }
 
@@ -42,7 +43,7 @@
     
     select:focus {
       outline: none;
-      border-color: #007bff;
+      border-color: v.$dodger-blue;
     }
 
     input[type='text'] {

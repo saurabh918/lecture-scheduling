@@ -33,17 +33,19 @@ const NewLecture = () => {
     e.preventDefault();
     let errors = {};
 
+    console.log(lectureData.lectureType === true)
+
     if (!lectureData.course) {
       errors.course = 'Course is required';
     }
 
     if (!lectureData.lectureType) {
       errors.lectureType = 'Lecture Type is required';
-    } 
-
-    const regex = /[A-Za-z]{1}/
-    if(!(lectureData.lectureType.match(regex))) {
-      errors.lectureType = 'Lecture type must have at least 1 alphabet character';
+    } else {
+      const regex = /[A-Za-z]/;
+      if (!regex.test(lectureData.lectureType)) {
+        errors.lectureType = 'Lecture type must have at least 1 alphabet character';
+      }
     }
 
     if(courses.length) {
