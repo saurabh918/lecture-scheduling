@@ -21,7 +21,7 @@ The project consists of three main pages:
 2. ### Admin Panel ("/admin"):
 - Admins can manage courses, add lectures, schedule lectures, and assign them to instructors.
 
-2. ### Instructor Panel ("/instructor/(instructor name)"):
+3. ### Instructor Panel ("/instructor/(instructor name)"):
 - Instructors can view lectures assigned to them along with the dates.
 - The instructor's name is automatically set as a route parameter.
 
