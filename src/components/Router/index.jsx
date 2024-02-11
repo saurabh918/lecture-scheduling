@@ -12,7 +12,7 @@ const RouterComponent = () => {
         <Route element={<PrivateRoutes />}>
           <Route path='/' element={<Login />} />
           <Route path='/admin' element={<AdminPanel />} />
-          <Route path='/instructor' element={<InstructorPanel />} />
+          <Route path='/instructor/:name' element={<InstructorPanel />} />
         </Route>
     </Routes>
   ) 

@@ -3,7 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   instructors: [
     "instructor1",
-    "instructor2"
+    "instructor2",
+    "instructor3",
+    "instructor4",
+    "instructor5",
+    "instructor6",
+    "instructor7"
   ]
 }
 

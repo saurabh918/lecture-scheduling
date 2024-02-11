@@ -4,5 +4,43 @@
     font-weight: bold;
     text-align: center;
     margin: 20px;
+
+    @media only screen and (min-width: 992px) {
+      font-size: 25px;
+    }
+  }
+
+  .page-content {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+
+    .instructor-list-container {
+      height: fit-content;
+      flex-basis: 8%;
+
+      @media only screen and (max-width: 1100px) {
+        width: 80%;
+      }
+    }
+
+    .course-form-container,.new-lecture-container,.lecture-form-container {
+      flex-basis: 26%;
+      @media only screen and (max-width: 1100px) {
+        flex-basis: 33%;
+      }
+      @media only screen and (max-width: 1100px) {
+        width: 80%;
+      }
+    }
+
+    @media only screen and (max-width: 1100px) {
+      flex-wrap: wrap;
+    }
+
+    @media only screen and (max-width: 905px) {
+      margin-top: 30px;
+      flex-direction: column;
+    }
   }
 }

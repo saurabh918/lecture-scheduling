@@ -1,21 +1,23 @@
-// LectureForm.js
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-
-import "./style.scss"
+import "./style.scss";
+import { addSchedule } from '../../reducers/ScheduleSlice';
 
 const LectureForm = () => {
   const [lectureData, setLectureData] = useState({
     course: '',
     date: '',
+    lecture: '',
     instructor: ''
   });
+  const [error, setError] = useState('');
 
-  // Get courses from Redux store
+  const dispatch = useDispatch();
   const courses = useSelector(state => state.courses.courses);
   const instructors = useSelector(state => state.instructors.instructors);
+  const allLectures = useSelector(state => state.schedule.allLectures)
+  console.log("allLectures",allLectures)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,13 +26,34 @@ const LectureForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add logic to handle form submission, e.g., dispatching an action to add the lecture
-    console.log('Lecture data:', lectureData);
+
+    // Validate form fields
+    if (!lectureData.course || !lectureData.date || !lectureData.lecture || !lectureData.instructor) {
+      setError('Please fill in all fields.');
+      return;
+    } else{
+      const instructorLectures = allLectures.filter(item => item.instructor === lectureData.instructor)
+      if(instructorLectures && instructorLectures.find(item => item.date === lectureData.date)) {
+        setError('Instructor already is assigned for this date.');
+        return
+      }
+    } 
+      // Dispatch action to add schedule
+      dispatch(addSchedule({ instructor: lectureData.instructor, course: lectureData.course, lecture: lectureData.lecture, date: lectureData.date }));
+      // Clear form fields and error message
+      setLectureData({
+        course: '',
+        date: '',
+        lecture: '',
+        instructor: ''
+      });
+      setError('');
   };
 
   return (
     <div className='lecture-form-container'>
       <h3>Schedule Lecture</h3>
+      {error && <div className="error">{error}</div>}
       <form onSubmit={handleSubmit}>
         <select name="course" value={lectureData.course} onChange={handleChange}>
           <option value="">Select Course</option>
@@ -38,25 +61,22 @@ const LectureForm = () => {
             <option key={uuidv4()} value={course.name}>{course.name}</option>
           ))}
         </select>
-        {/* Select instructors */}
-          <select name="instructor" value={lectureData.instructor} onChange={handleChange}>
-            <option value="">Select Instructors</option>
-            {instructors.map(item => (
-              <option key={uuidv4()}  value={item}>{item}</option>
-            ))}
-          </select>
-        {/* Display lectures based on the selected course */}
+        <select name="instructor" value={lectureData.instructor} onChange={handleChange}>
+          <option value="">Select Instructor</option>
+          {instructors.map(item => (
+            <option key={uuidv4()} value={item}>{item}</option>
+          ))}
+        </select>
         {lectureData.course && (
-          <select name="instructor" value={lectureData.instructor} onChange={handleChange}>
-            <option value="">Select lecture</option>
-            {/* Populate options with lectures for the selected course */}
+          <select name="lecture" value={lectureData.lecture} onChange={handleChange}>
+            <option value="">Select Lecture</option>
             {courses.find(course => course.name === lectureData.course)?.lectures.map(lecture => (
-              <option key={uuidv4()}  value={lecture}>{lecture}</option>
+              <option key={uuidv4()} value={lecture}>{lecture}</option>
             ))}
           </select>
         )}
         <input type="date" name="date" value={lectureData.date} onChange={handleChange} />
-        <button type="submit">Add Lecture</button>
+        <button type="submit">Schedule Lecture</button>
       </form>
     </div>
   );

@@ -5,8 +5,13 @@ const initialState = {
   isAuthenticated: false,
     users: [
       { username: 'admin', password: 'adminpassword', role: 'admin' }, // Admin user
-      { username: 'user1', password: 'password1', role: 'regular' },
-      { username: 'user2', password: 'password2', role: 'regular' },
+      { username: 'instructor1', password: 'password1', role: 'instructor' },
+      { username: 'instructor2', password: 'password2', role: 'instructor' },
+      { username: 'instructor3', password: 'password3', role: 'instructor' },
+      { username: 'instructor4', password: 'password4', role: 'instructor' },
+      { username: 'instructor5', password: 'password5', role: 'instructor' },
+      { username: 'instructor6', password: 'password6', role: 'instructor' },
+      { username: 'instructor7', password: 'password7', role: 'instructor' },
       // Add more users as needed
     ],
     currentUser: null,
@@ -20,13 +25,26 @@ export const authSlice = createSlice({
       const { username, password } = action.payload;
       const user = state.users.find(user => user.username === username && user.password === password);
       if (user) {
-        state.isAuthenticated = true;
-        state.currentUser = user;
-      }
+        return {
+          ...state,
+          isAuthenticated: true,
+          currentUser: user,
+        }
+      } 
+      // else {
+      //   return {
+      //     ...state,
+      //     isAuthenticated: false,
+      //     currentUser: null,
+      //   }
+      // }
     },
     logout: (state) => {
-      state.isAuthenticated = false;
-      state.currentUser = null;
+      return {
+        ...state,
+        isAuthenticated: false,
+        currentUser: null
+      }
     },
   },
 });

@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = {
+const storedSchedule = JSON.parse(localStorage.getItem('schedule'))
+const initialState = storedSchedule ? storedSchedule :{
   allLectures: [
-    {instructor: "instructor1" , course: "course1" , lecture: "lecture1", date:"12-01-2024"}
+    {instructor: "instructor1" , course: "course1" , lecture: "lecture1", date:"2024-01-12"}
   ]
 }
 
@@ -10,10 +11,18 @@ const ScheduleSlice = createSlice({
   name: "schedule",
   initialState,
   reducers: {
+    addSchedule: (state,action) => {
+      const updatedSchedule = {
+        ...state,
+        allLectures: [...state.allLectures, action.payload]
+      }
 
+      localStorage.setItem("schedule", updatedSchedule)
+      return updatedSchedule
+    } 
   }
 })
 
-export const {} = ScheduleSlice.actions
+export const {addSchedule} = ScheduleSlice.actions
 
 export default ScheduleSlice.reducer

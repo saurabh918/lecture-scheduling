@@ -3,6 +3,20 @@
   color: #fff;
   padding: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+
+  .social-icons {
+    flex-basis: 6%;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      color: #fff;
+      font-size: 20px;
+      &:hover {
+        color: #e6e3e3;
+      }
+    }
+  }
 }

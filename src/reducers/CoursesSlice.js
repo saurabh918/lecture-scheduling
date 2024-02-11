@@ -1,10 +1,11 @@
 // coursesSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const storedCourses = JSON.parse(localStorage.getItem('courses'))
+const initialState = storedCourses ? storedCourses : {
   courses : [
-    {name: "course1", lectures: ["lecture1","lecture2"]},
-    {name: "course2", lectures: ["lecture3","lecture4"]}
+    {name: "course1", level:1, description:"course 1description", image:"img-src", lectures: ["lecture1","lecture2"]},
+    {name: "course2", level:2, description:"course 2description", image:"img-src", lectures: ["lecture3","lecture4"]}
   ]
 }
 
@@ -13,17 +14,33 @@ export const CoursesSlice = createSlice({
   initialState,
   reducers: {
     addCourse: (state, action) => {
-      return {
+      const updatedCourses =  {
         ...state,
         courses: [...state.courses, action.payload]
       }
+
+      localStorage.setItem('courses', JSON.stringify(updatedCourses))
+
+      return updatedCourses
     },
     addLectureToCourse: (state, action) => {
-      const { courseId, lecture } = action.payload;
-      const course = state.find(course => course.id === courseId);
-      if (course) {
-        course.lectures.push(lecture);
+      const { courseName, lectureType } = action.payload;
+      const addedLecture = {
+        ...state,
+        courses: state.courses.map((course) => {
+          if(courseName === course.name) {
+            return {
+              ...course,
+              lectures: [...course.lectures, lectureType]
+            }
+          } else {
+            return course
+          }
+        })
       }
+
+      localStorage.setItem('courses', JSON.stringify(addedLecture))
+      return addedLecture
     },
   },
 });

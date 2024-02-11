@@ -19,12 +19,11 @@ const Login = () => {
       const user = JSON.parse(userFromStorage);
       if (user.role === 'admin') {
         navigate('/admin');
-      } else if (user.role === 'regular') {
-        navigate('/instructor');
+      } else if (user.role === 'instructor') {
+        navigate('/instructor/'+user.username);
       }
     }
-  }, []); // Empty dependency array to ensure the effect runs only once
-
+  }, [navigate]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -33,22 +32,27 @@ const Login = () => {
     } else {
       // Dispatch login action
       dispatch(login({ username, password }));
+      if(!currentUser) {
+        setError('Invalid username or password.');
+      }
     }
   };
 
   // Redirect based on authentication status and user role
   useEffect(() => {
+    setError('');
     if (currentUser) {
       // Save user data to local storage upon successful login
       localStorage.setItem('user', JSON.stringify(currentUser));
       if (currentUser.role === 'admin') {
         navigate('/admin');
-      } else if (currentUser.role === 'regular') {
-        navigate('/instructor');
+      } else if (currentUser.role === 'instructor') {
+        navigate('/instructor/'+currentUser.username);
       } else {
         setError('Invalid username or password.');
       }
-    }
+    } 
+
   }, [currentUser, navigate]);
 
   return (
