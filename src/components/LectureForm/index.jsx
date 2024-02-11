@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import "./style.scss";
 import { addSchedule } from '../../reducers/ScheduleSlice';
+import Popup from '../Popup';
 
 const LectureForm = () => {
   const [lectureData, setLectureData] = useState({
@@ -12,17 +13,21 @@ const LectureForm = () => {
     instructor: ''
   });
   const [error, setError] = useState('');
+  const [showPopup, setShowPopup] = useState(false)
 
   const dispatch = useDispatch();
   const courses = useSelector(state => state.courses.courses);
   const instructors = useSelector(state => state.instructors.instructors);
   const allLectures = useSelector(state => state.schedule.allLectures)
-  console.log("allLectures",allLectures)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLectureData({ ...lectureData, [name]: value });
   };
+
+  const handleClose = () => {
+    setShowPopup(false)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,6 +45,8 @@ const LectureForm = () => {
     } 
       // Dispatch action to add schedule
       dispatch(addSchedule({ instructor: lectureData.instructor, course: lectureData.course, lecture: lectureData.lecture, date: lectureData.date }));
+      // show popup
+      setShowPopup(true)
       // Clear form fields and error message
       setLectureData({
         course: '',
@@ -78,6 +85,7 @@ const LectureForm = () => {
         <input type="date" name="date" value={lectureData.date} onChange={handleChange} />
         <button type="submit">Schedule Lecture</button>
       </form>
+      {showPopup && <Popup message="Lecture scheduled" onClose={handleClose} />}
     </div>
   );
 };

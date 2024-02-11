@@ -18,5 +18,21 @@
         color: #e6e3e3;
       }
     }
+    @media only screen and (max-width: 1400px) {
+      flex-basis: 10%;
+    }
+
+    @media only screen and (max-width: 768px) {
+      flex-basis: 15%;
+    }
+
+    @media only screen and (max-width: 576px) {
+      width: 22%;
+    }
+  }
+
+  @media only screen and (max-width: 576px) {
+    flex-direction: column;
+    row-gap: 10px;
   }
 }

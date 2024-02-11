@@ -17,7 +17,7 @@ const ScheduleSlice = createSlice({
         allLectures: [...state.allLectures, action.payload]
       }
 
-      localStorage.setItem("schedule", updatedSchedule)
+      localStorage.setItem("schedule", JSON.stringify(updatedSchedule))
       return updatedSchedule
     } 
   }

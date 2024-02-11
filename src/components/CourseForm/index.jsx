@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./style.scss"
 import { useDispatch, useSelector } from 'react-redux';
 import { addCourse } from '../../reducers/CoursesSlice';
+import Popup from '../Popup';
 
 const CourseForm = () => {
   const [courseData, setCourseData] = useState({
@@ -11,6 +12,7 @@ const CourseForm = () => {
     image: ''
   });
   const [errors, setErrors] = useState({});
+  const [showPopup, setShowPopup] = useState(false)
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
@@ -80,11 +82,16 @@ const CourseForm = () => {
     // Add logic to handle form submission, e.g., dispatching an action to add the course
 
     dispatch(addCourse({name: courseData.name,level: courseData.level, description: courseData.description, image: courseData.image.substring(0,20), lectures: []}))
-  
+    
+    setShowPopup(true)
     // Clear errors after successful submission
     setErrors({});
     setCourseData({name: '', level: '', description: '', image: ''})
   };
+
+  const handleOnClose = () => {
+    setShowPopup(false)
+  }
 
   return (
     <div className='course-form-container'>
@@ -116,6 +123,9 @@ const CourseForm = () => {
         )}
         <button type="submit" className='add-course'>Add Course</button>
       </form>
+      {
+        showPopup && <Popup message="Course added successfully" onClose={handleOnClose} />
+      }
     </div>
   );
 };

@@ -8,14 +8,23 @@ import "./style.scss"
 
 const InstructorPanel = () => {
   const navigate = useNavigate()
+  const userData = JSON.parse(localStorage.getItem('user'))
+  const currentParams = useParams()
+
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('user'))
     if(userData.role === 'admin') {
       navigate("/admin")
     }
-  },[navigate])
-  const currentParams = useParams()
+  },[navigate,userData.role])
+
+  useEffect(() => {
+    if(userData.role === 'instructor') {
+      navigate("/instructor/"+userData.username)
+    }
+  },[navigate,userData.username,userData.role])
+  
   const currentUser = currentParams.name
+  console.log("currentUser",currentUser)
   const allLectures = useSelector(state => state.schedule.allLectures)
   const instructorLectures = allLectures.filter(item => item.instructor === currentUser)
   return (

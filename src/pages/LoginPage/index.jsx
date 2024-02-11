@@ -58,27 +58,37 @@ const Login = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className="error">{error}</div>}
       <form onSubmit={handleSubmit}>
-        <div>
+      <table>
+        <tr>
+          <td>
           <label>Username:</label>
+          </td>
+          <td>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter your username"
           />
-        </div>
-        <div>
+          </td>
+        </tr>
+        <tr>
+          <td>
           <label>Password:</label>
+          </td>
+          <td>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
           />
-        </div>
-        <div>
+          </td>
+        </tr>
+      </table>
+        <div className='btn-container'>
           <button type="submit">Login</button>
         </div>
       </form>
