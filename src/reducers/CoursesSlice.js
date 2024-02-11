@@ -1,4 +1,3 @@
-// coursesSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const storedCourses = JSON.parse(localStorage.getItem('courses'))

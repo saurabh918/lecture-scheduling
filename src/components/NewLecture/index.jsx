@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-
 import {v4 as uuidv4} from 'uuid'
 
-import "./style.scss"; // Import your SCSS file
 import { useDispatch, useSelector } from 'react-redux';
-
 import { addLectureToCourse } from '../../reducers/CoursesSlice';
+
 import Popup from '../Popup';
+
+// import css
+import "./style.scss";
 
 const NewLecture = () => {
   const [lectureData, setLectureData] = useState({
@@ -28,7 +29,6 @@ const NewLecture = () => {
     setShowPopup(false)
   }
 
-  console.log("new lecture add", courses)
   const handleSubmit = (e) => {
     e.preventDefault();
     let errors = {};
@@ -58,8 +58,7 @@ const NewLecture = () => {
       return;
     }
 
-    console.log('Lecture data:', lectureData);
-    // Add logic to handle form submission, e.g., dispatching an action to add the lecture
+    // Logic to handle form submission
     dispatch(addLectureToCourse({courseName: lectureData.course, lectureType: lectureData.lectureType}))
 
     // show popup
@@ -89,6 +88,7 @@ const NewLecture = () => {
         
         <button type="submit">Add Lecture</button>
       </form>
+      {/* custom popup */}
       { showPopup && <Popup message="Lecture added" onClose={handleClose} />}
     </div>
   );

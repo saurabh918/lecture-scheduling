@@ -1,4 +1,6 @@
 import React from 'react';
+
+// import css
 import './style.scss'; 
 
 const Popup = ({ message, onClose }) => {

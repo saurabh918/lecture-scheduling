@@ -1,4 +1,3 @@
-// authSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -12,7 +11,6 @@ const initialState = {
       { username: 'instructor5', password: 'password5', role: 'instructor' },
       { username: 'instructor6', password: 'password6', role: 'instructor' },
       { username: 'instructor7', password: 'password7', role: 'instructor' },
-      // Add more users as needed
     ],
     currentUser: null,
 }
@@ -31,13 +29,6 @@ export const authSlice = createSlice({
           currentUser: user,
         }
       } 
-      // else {
-      //   return {
-      //     ...state,
-      //     isAuthenticated: false,
-      //     currentUser: null,
-      //   }
-      // }
     },
     logout: (state) => {
       return {

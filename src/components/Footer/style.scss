@@ -1,10 +1,20 @@
+@use "../../scss/variables" as v;
+
 .footer {
   background-color: #333;
   color: #fff;
   padding: 20px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  
+  .wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    @media only screen and (max-width: v.$sm) {
+      flex-direction: column;
+      row-gap: 10px;
+    }
+  }
 
   .social-icons {
     flex-basis: 6%;
@@ -18,21 +28,17 @@
         color: #e6e3e3;
       }
     }
-    @media only screen and (max-width: 1400px) {
+    @media only screen and (max-width: v.$xxl) {
       flex-basis: 10%;
     }
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: v.$md) {
       flex-basis: 15%;
     }
 
-    @media only screen and (max-width: 576px) {
+    @media only screen and (max-width: v.$sm) {
       width: 22%;
     }
   }
 
-  @media only screen and (max-width: 576px) {
-    flex-direction: column;
-    row-gap: 10px;
-  }
 }

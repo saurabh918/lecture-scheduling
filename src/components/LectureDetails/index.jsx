@@ -1,5 +1,7 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
+
 const LectureDetails = ({item}) => {
   return (
     <tr>
@@ -9,5 +11,13 @@ const LectureDetails = ({item}) => {
     </tr>
   )
 }
+
+LectureDetails.propTypes = {
+  item: PropTypes.shape({
+    course: PropTypes.string.isRequired,
+    lecture: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default LectureDetails

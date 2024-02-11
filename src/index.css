@@ -19,11 +19,6 @@ main {
   flex: 1; 
 }
 
-.wrapper {
-  width: 90%;
-  margin: auto;
-}
-
 footer {
   flex-shrink: 0; 
   background-color: #333;

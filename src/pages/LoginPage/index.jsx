@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../reducers/AuthSlice';
-import { useNavigate } from 'react-router-dom';
+
+// import css
 import "./style.scss";
 
 const Login = () => {
@@ -12,7 +15,6 @@ const Login = () => {
   const navigate = useNavigate();
   const currentUser = useSelector(state => state.auth.currentUser);
 
-  // Effect to check local storage when component mounts
   useEffect(() => {
     const userFromStorage = localStorage.getItem('user');
     if (userFromStorage) {

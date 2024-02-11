@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
+
 import LectureDetails from '../../components/LectureDetails'
 
+// import css
 import "./style.scss"
 
 const InstructorPanel = () => {
@@ -24,7 +26,6 @@ const InstructorPanel = () => {
   },[navigate,userData.username,userData.role])
   
   const currentUser = currentParams.name
-  console.log("currentUser",currentUser)
   const allLectures = useSelector(state => state.schedule.allLectures)
   const instructorLectures = allLectures.filter(item => item.instructor === currentUser)
   return (
@@ -35,9 +36,11 @@ const InstructorPanel = () => {
         instructorLectures.length ? 
         <table>
         <thead>
+          <tr>
           <th>Course</th>
           <th>Lecture</th>
           <th>Date</th>
+          </tr>
         </thead>
         <tbody>
           {

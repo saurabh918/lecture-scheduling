@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // import components
 import InstructorList from '../../components/InstructorList'
@@ -6,10 +7,8 @@ import CourseForm from '../../components/CourseForm'
 import LectureForm from '../../components/LectureForm'
 import NewLecture from '../../components/NewLecture'
 
-//import styles
-
+//import css
 import "./style.scss"
-import { useNavigate } from 'react-router-dom'
 
 const AdminPanel = () => {
   const navigate = useNavigate()

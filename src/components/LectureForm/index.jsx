@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import "./style.scss";
+
+import { useDispatch, useSelector } from 'react-redux';
 import { addSchedule } from '../../reducers/ScheduleSlice';
+
 import Popup from '../Popup';
+
+// import css
+import "./style.scss";
 
 const LectureForm = () => {
   const [lectureData, setLectureData] = useState({
@@ -85,6 +89,7 @@ const LectureForm = () => {
         <input type="date" name="date" value={lectureData.date} onChange={handleChange} />
         <button type="submit">Schedule Lecture</button>
       </form>
+      {/* custom popup */}
       {showPopup && <Popup message="Lecture scheduled" onClose={handleClose} />}
     </div>
   );

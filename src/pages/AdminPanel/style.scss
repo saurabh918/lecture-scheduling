@@ -5,7 +5,7 @@
     text-align: center;
     margin: 20px;
 
-    @media only screen and (min-width: 992px) {
+    @media only screen and (min-width: v.$lg) {
       font-size: 25px;
     }
   }
@@ -19,22 +19,22 @@
       height: fit-content;
       flex-basis: 8%;
 
-      @media only screen and (max-width: 1100px) {
+      @media only screen and (max-width: v.$xl) {
         width: 80%;
       }
     }
 
     .course-form-container,.new-lecture-container,.lecture-form-container {
       flex-basis: 26%;
-      @media only screen and (max-width: 1100px) {
+      @media only screen and (max-width: v.$xl) {
         flex-basis: 33%;
       }
-      @media only screen and (max-width: 1100px) {
+      @media only screen and (max-width: v.$xl) {
         width: 80%;
       }
     }
 
-    @media only screen and (max-width: 1100px) {
+    @media only screen and (max-width: v.$xl) {
       flex-wrap: wrap;
     }
 

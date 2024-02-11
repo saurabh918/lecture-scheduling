@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import "./style.scss"
+
+// react-redux imports
 import { useDispatch, useSelector } from 'react-redux';
 import { addCourse } from '../../reducers/CoursesSlice';
+
+// component imports
 import Popup from '../Popup';
 
+// import css
+import "./style.scss"
+
 const CourseForm = () => {
+  // use state hooks
   const [courseData, setCourseData] = useState({
     name: '',
     level: '',
@@ -14,6 +21,10 @@ const CourseForm = () => {
   const [errors, setErrors] = useState({});
   const [showPopup, setShowPopup] = useState(false)
 
+  // redux store hooks
+  const dispatch = useDispatch()
+  const courses = useSelector(state => state.courses.courses)
+
   const handleChange = (e) => {
     const { name, value, type } = e.target;
   
@@ -21,13 +32,9 @@ const CourseForm = () => {
     if (type === 'file') {
       const file = e.target.files[0];
       
-      // Check if a file is selected
       if (file) {
-        // Check if the file type is an image
         if (!file.type.startsWith('image/')) {
-          // Reset the input value to clear the selected file
           e.target.value = null;
-          // Display an alert informing the user to select an image file
           alert('Please select an image file.');
           return;
         }
@@ -44,9 +51,7 @@ const CourseForm = () => {
       setCourseData({ ...courseData, [name]: value });
     }
   };
-  const dispatch = useDispatch()
-  const courses = useSelector(state => state.courses.courses)
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     let errors = {};
@@ -71,20 +76,17 @@ const CourseForm = () => {
       errors.description = 'Description is required';
     }
 
-    // If there are errors, set them and return
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
       return;
     }
 
-    // If no errors, proceed with form submission
-    console.log('Course data:', courseData);
-    // Add logic to handle form submission, e.g., dispatching an action to add the course
+    // Logic to handle form submission
 
     dispatch(addCourse({name: courseData.name,level: courseData.level, description: courseData.description, image: courseData.image.substring(0,20), lectures: []}))
     
     setShowPopup(true)
-    // Clear errors after successful submission
+    // Clear errors and states after successful submission
     setErrors({});
     setCourseData({name: '', level: '', description: '', image: ''})
   };
@@ -123,6 +125,7 @@ const CourseForm = () => {
         )}
         <button type="submit" className='add-course'>Add Course</button>
       </form>
+      {/* custom popup */}
       {
         showPopup && <Popup message="Course added successfully" onClose={handleOnClose} />
       }

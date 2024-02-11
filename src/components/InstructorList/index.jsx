@@ -1,11 +1,11 @@
-// InstructorList.js
 import React from 'react';
 
-import "./style.scss"
 import { useSelector } from 'react-redux';
 
+// import css
+import "./style.scss"
+
 const InstructorList = () => {
-  // Mock data for instructors
   const instructors = useSelector(state => state.instructors.instructors)
 
   return (
